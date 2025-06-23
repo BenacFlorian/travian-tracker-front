@@ -1,0 +1,22 @@
+@if (header().column.getCanSort()) {
+  @let columnToggleSortingHandler = header().column.getToggleSortingHandler();
+
+<button
+  class="tw:btn tw:btn-circle tw:btn-ghost tw:btn-xs"
+  (click)="columnToggleSortingHandler ? columnToggleSortingHandler($event) : console.error('no handler for sorting update')"
+>
+<!-- (click)="sortButtonClicked.emit(header().column.getNextSortingOrder())"  : NOT NECESSARY ANYMORE FOR NOW as we call getToggleSortingHandler() from here -->
+
+  @if (header().column.getIsSorted()) { @if (header().column.getIsSorted() ==
+  'asc') {
+  <span class="material-symbols-outlined tw:!text-sm">north</span>
+  } @else {
+  <span class="material-symbols-outlined tw:!text-sm">south</span>
+
+  } } @else {
+  <span class="material-symbols-outlined tw:!text-sm">sort</span>
+  <!-- <span class="material-symbols-outlined tw:!text-sm">unfold_more</span> -->
+
+  }
+</button>
+}

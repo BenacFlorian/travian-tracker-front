@@ -1,0 +1,11 @@
+  <!-- TO REMOVE ANNOYING RING WHEN FOCUSED : tw:focus:outline-none tw:focus-within:outline-none  -->
+  <label class="tw:input tw:focus:outline-none tw:focus-within:outline-none">
+    <span class="material-symbols-outlined tw:text-(--input-color)">search</span>
+    <input
+      class="tw:focus:ring-0 tw:focus:ring-offset-0 tw:focus:ring-offset-black"
+      type="search"
+      placeholder="Search..."
+      (input)="updateGlobalTableFilter($event)"
+    />
+    <span class="tw:text-nowrap">{{table().getFilteredRowModel().rows.length}} / {{table().getPreFilteredRowModel().rows.length}} </span>
+  </label>

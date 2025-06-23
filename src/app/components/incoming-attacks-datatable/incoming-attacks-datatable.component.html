@@ -1,1 +1,63 @@
-<p>incoming-attacks-datatable works!</p>
+<!-- search + pagination -->
+<div class="tw:flex tw:justify-between tw:items-center">
+    <!-- search widget -->
+    <app-table-search-widget [table]="table"></app-table-search-widget>
+  
+    <!-- pagination widget -->
+    <app-table-pagination-widget [table]="table"></app-table-pagination-widget>
+</div>
+<table class="tw:table">
+    <thead>
+      @for (headerGroup of table.getHeaderGroups(); track headerGroup.id) {
+      <tr>
+        @for (header of headerGroup.headers; track header.id) { @if
+        (!header.isPlaceholder) {
+        <th>
+          <div class="tw:flex tw:items-center">
+            <ng-container
+              *flexRender="
+                header.column.columnDef.header;
+                props: header.getContext();
+                let header
+              "
+            >
+              <span [innerHTML]="header"></span>
+            </ng-container>
+            <app-table-sort-widget [header]="header"></app-table-sort-widget>
+  
+          </div>
+        </th>
+        } }
+      </tr>
+      }
+    </thead>
+    <tbody>
+      @for (row of table.getRowModel().rows; track row.id) {
+        <tr>
+          @for (cell of row.getVisibleCells(); track cell.id) {
+          <td>
+            <ng-container
+              *flexRender="
+                cell.column.columnDef.cell;
+                props: cell.getContext();
+                let cell
+              "
+            >
+              {{ cell }}
+            </ng-container>
+          </td>
+          }
+        </tr>
+        <!-- @if (row.getIsExpanded()) {
+        <tr class="tw:bg-gray-700">
+          <td [colSpan]="row.getAllCells().length" class="tw:p-0">
+            <ng-container
+              [ngTemplateOutlet]="treeTableLeafItemsTmpl"
+              [ngTemplateOutletContext]="{ row: row.original }"
+            ></ng-container>
+          </td>
+        </tr>
+        } -->
+      }
+    </tbody>
+  </table>
