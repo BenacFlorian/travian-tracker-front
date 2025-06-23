@@ -1,0 +1,26 @@
+<header class="tw:bg-white tw:shadow-md tw:border-b tw:border-gray-200">
+  <div class="tw:max-w-7xl tw:mx-auto tw:px-4 tw:sm:px-6 tw:lg:px-8">
+    <div class="tw:flex tw:justify-between tw:items-center tw:h-16">
+      <!-- Logo/Titre -->
+      <div class="tw:flex tw:items-center">
+        <h1 class="tw:text-xl tw:font-bold tw:text-gray-900">
+          Travian Tracker
+          @if (allianceTag()) {
+            <span class="tw:text-blue-600 tw:ml-2">[{{allianceTag()}}]</span>
+          }
+          <span class="tw:text-base tw:ml-2">{{getTitle()}}</span>
+        </h1>
+      </div>
+
+      <nav>
+        <a [routerLink]="['/defense-dashboard', allianceTag()]" class="tw:mr-4 tw:px-4 tw:btn tw:btn-ghost tw:bg-gray-200 tw:text-gray-700 tw:cursor-pointer">
+          Defense Dashboard
+        </a>
+        
+        <a [routerLink]="['/store-reports', allianceTag()]" class="tw:px-4 tw:btn tw:btn-ghost tw:bg-gray-200 tw:text-gray-700 tw:cursor-pointer">
+          Store Reports
+        </a>
+      </nav>
+    </div>
+  </div>
+</header>
