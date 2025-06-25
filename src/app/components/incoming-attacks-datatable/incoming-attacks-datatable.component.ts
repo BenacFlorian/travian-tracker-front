@@ -1,10 +1,11 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, OnInit } from '@angular/core';
 import { TableSearchWidgetComponent } from '../datatable-utils/table-search-widget/table-search-widget.component';
 import { TablePaginationWidgetComponent } from '../datatable-utils/table-pagination-widget/table-pagination-widget.component';
 import { TableSortWidgetComponent } from '../datatable-utils/table-sort-widget/table-sort-widget.component';
 import { CommonModule } from '@angular/common';
 import { ColumnDef } from '@tanstack/angular-table';
 import { createAngularTable, FlexRender, getCoreRowModel, getSortedRowModel, getFilteredRowModel, getPaginationRowModel } from '@tanstack/angular-table';
+import { IncomingAttacksDatatableService } from './incoming-attacks-datatable.service';
 
 @Component({
   selector: 'app-incoming-attacks-datatable',
@@ -18,8 +19,9 @@ import { createAngularTable, FlexRender, getCoreRowModel, getSortedRowModel, get
   templateUrl: './incoming-attacks-datatable.component.html',
   styleUrl: './incoming-attacks-datatable.component.scss'
 })
-export class IncomingAttacksDatatableComponent {
+export class IncomingAttacksDatatableComponent implements OnInit {
 
+  constructor(private incomingAttacksDatatableService: IncomingAttacksDatatableService) {}
 
   // Signal pour les données
   targettedVillagesData = signal([{code: '123'}]);
@@ -31,9 +33,9 @@ export class IncomingAttacksDatatableComponent {
     //   cell: () => this.requestsTableExpansionTmpl(),
     // },
     {
-      id: 'code',
-      header: 'Code',
-      accessorKey: 'code',
+      id: 'defender_village_name',
+      header: 'Nom',
+      accessorKey: 'defender_village_name',
       enableSorting: true
     },
   ];
@@ -49,12 +51,18 @@ export class IncomingAttacksDatatableComponent {
     getRowCanExpand: () => false, // Allow all rows to be expanded
     globalFilterFn: 'includesString',
     initialState: {
-      sorting: [{ id: 'code', desc: true }],
+      sorting: [{ id: 'name', desc: true }],
       pagination: {
         pageSize: 10,
       },
     },
   }));
+
+  ngOnInit() {
+    this.incomingAttacksDatatableService.getDataForIncomingAttacksDatatable().subscribe((data) => {
+      this.targettedVillagesData.set(data);
+    });
+  }
 
 }
 

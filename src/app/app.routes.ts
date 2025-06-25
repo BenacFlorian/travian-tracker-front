@@ -4,5 +4,6 @@ import { DefenseDashboardComponent } from './pages/defense-dashboard/defense-das
 
 export const routes: Routes = [
   { path: 'store-reports/:allianceTag', component: StoreReportsComponent, title: 'Store Reports' },
-  { path: 'defense-dashboard/:allianceTag', component: DefenseDashboardComponent, title: 'Defense Dashboard' }
+  { path: 'defense-dashboard/:allianceTag', component: DefenseDashboardComponent, title: 'Defense Dashboard' },
+  // { path: '/', redirectTo: '/defense-dashboard/AF', pathMatch: 'full' },
 ];
