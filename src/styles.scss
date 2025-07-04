@@ -1,2 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
-@use "styles/tailwind.css"
+@use "styles/tailwind.css";
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+app-root {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}

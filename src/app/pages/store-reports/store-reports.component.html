@@ -1,2 +1,17 @@
-<app-navigation-header></app-navigation-header>
-<p>store-reports works!</p> 
+<div class="tw:h-full tw:overflow-y-hidden">
+  <app-navigation-header></app-navigation-header>
+  <app-vertical-tabs>
+    <ng-template verticalTab="Espionnage">
+      <app-spy></app-spy>
+    </ng-template>
+    <ng-template verticalTab="Héros / Joueur" *ngIf="false">
+      <app-player></app-player>
+    </ng-template>
+    <ng-template verticalTab="Attaques" *ngIf="false">
+      <app-attack></app-attack>
+    </ng-template>
+    <ng-template verticalTab="Défenses" *ngIf="false">
+      <app-defense></app-defense>
+    </ng-template>
+  </app-vertical-tabs>
+</div>

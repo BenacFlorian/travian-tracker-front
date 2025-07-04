@@ -1,0 +1,23 @@
+<div class="tw:flex tw:h-full">
+  <!-- Tabs verticaux sur la gauche -->
+  <div class="tw:w-48 tw:border-r tw:border-gray-200">
+    <ng-container *ngFor="let tab of tabs; let i = index">
+      <button 
+        (click)="setActiveTab(i)"
+        class="tw:w-full tw:px-4 tw:py-3 tw:text-left tw:border-b tw:border-gray-200 hover:tw:bg-gray-200 tw:transition-colors"
+        [class.tw:bg-blue-500]="activeTab() === i"
+        [class.tw:text-white]="activeTab() === i"
+        [class.tw:font-bold]="activeTab() === i"
+      >
+        {{ tab.title }}
+      </button>
+    </ng-container>
+  </div>
+
+  <!-- Contenu des tabs -->
+  <div class="tw:flex-1 tw:p-6">
+    <ng-container *ngIf="tabs.length">
+      <ng-container *ngTemplateOutlet="tabs[activeTab()]?.template"></ng-container>
+    </ng-container>
+  </div>
+</div> 
