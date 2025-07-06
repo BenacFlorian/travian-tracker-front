@@ -23,6 +23,7 @@ export interface PlayerData {
     sendTroops?: Troops; // pour attacker
     presentTroops?: Troops; // pour defender
     deadTroops: Troops;
+    toHealTroops?: Troops;
     additionalsInformationsGetted?: string[]; // uniquement pour attacker
 }
 

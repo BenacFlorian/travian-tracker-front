@@ -147,6 +147,7 @@ export class SpyService {
     const tbodies = table?.querySelectorAll('tbody') || [];
     const send = tbodies.length > 1 ? this.extractTroops(tbodies[1]) as Troops : {} as Troops;
     const dead = tbodies.length > 2 ? this.extractTroops(tbodies[2]) as Troops : {} as Troops;
+    const toHeal = tbodies.length > 3 ? this.extractTroops(tbodies[3]) as Troops : undefined;
 
     const additionalInfo: string[] = [];
     if (role === 'attacker') {
@@ -165,6 +166,7 @@ export class SpyService {
       travianVillageId,
       ...(role === 'attacker' ? { sendTroops: send } : { presentTroops: send }),
       deadTroops: dead,
+      toHealTroops: toHeal,
       ...(role === 'attacker' ? { additionalsInformationsGetted: additionalInfo } : {})
     };
   }

@@ -5,25 +5,38 @@
   </span>
 </div>
 } @else {
-<div class="tw:max-w-4xl tw:mx-auto tw:p-6 tw:overflow-hidden">
-    <h2 class="tw:text-xl tw:font-bold tw:mb-4">Coller un rapport d'espionnage</h2>
-  
-    <label class="tw:label">
-      <span class="tw:label-text">Collez ici un rapport copié de Travian…</span>
-    </label>
-    <div class="tw:relative tw:h-64 tw:overflow-hidden tw:rounded tw:border tw:border-gray-400 tw:bg-white">
-      <div
-        #pasteZone
-        contenteditable="true"
-        class="tw:absolute tw:inset-0 tw:overflow-auto tw:p-4 tw:text-black tw:break-words tw:max-w-full tw:max-h-full tw:bg-white tw:text-black"
-      ></div>
+  @if(displayMode()) {
+    <div class="">
+      <div class="tw:text-center tw:max-w-6xl tw:mx-auto tw:overflow-hidden tw:mt-0 tw:mb-4">
+        <h2 class="tw:text-xl tw:font-bold">Rapport d'espionnage</h2>
+      </div>
+      <div class="tw:max-w-6xl tw:mx-auto tw:overflow-auto">
+        @if(report()) {
+          <app-spy-report-display [report]="report()!"></app-spy-report-display>
+        }
+      </div>
     </div>
-  
-    <button
-      class="tw:btn tw:btn-primary tw:mt-4"
-      (click)="handleSubmit()"
-    >
-      Analyser le rapport
-    </button>
-</div>
+  } @else {
+  <div class="tw:max-w-4xl tw:mx-auto tw:p-6 tw:overflow-hidden">
+      <h2 class="tw:text-xl tw:font-bold tw:mb-4">Coller un rapport d'espionnage</h2>
+    
+      <label class="tw:label">
+        <span class="tw:label-text">Collez ici un rapport copié de Travian…</span>
+      </label>
+      <div class="tw:relative tw:h-64 tw:overflow-hidden tw:rounded tw:border tw:border-gray-400 tw:bg-white">
+        <div
+          #pasteZone
+          contenteditable="true"
+          class="tw:absolute tw:inset-0 tw:overflow-auto tw:p-4 tw:text-black tw:break-words tw:max-w-full tw:max-h-full tw:bg-white tw:text-black"
+        ></div>
+      </div>
+    
+      <button
+        class="tw:btn tw:btn-primary tw:mt-4"
+        (click)="handleSubmit()"
+      >
+        Analyser le rapport
+      </button>
+  </div>
+  }
 }
